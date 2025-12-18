@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List - Vanilla JS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="todo-container">
+        <h1>📝 Todo List</h1>
+        <div class="add-todo">
+            <input type="text" id="todoInput" placeholder="Ajouter une nouvelle tâche...">
+            <button class="add-btn" onclick="addTodo()">Ajouter</button>
+        </div>
+        <div id="todoList"></div>
+    </div>
+
+    <script>
+        // Ajouter une todo
+        function addTodo() {
+            const input = document.getElementById('todoInput');
+            const text = input.value.trim();
+            if (!text) return;
+
+            const todoId = 'todo-' + Date.now();
+            const todoItem = document.createElement('div');
+            todoItem.className = 'todo-item';
+            todoItem.innerHTML = `
+                <input type="checkbox" class="todo-checkbox" onchange="toggleComplete('${todoId}')" id="${todoId}">
+                <label for="${todoId}" class="todo-text">${text}</label>
+                <button class="delete-btn" onclick="deleteTodo('${todoId}')">🗑️ Supprimer</button>
+            `;
+            
+            document.getElementById('todoList').appendChild(todoItem);
+            input.value = '';
+            saveTodos();
+        }
+
+        // Toggle completé
+        function toggleComplete(todoId) {
+            const checkbox = document.getElementById(todoId);
+            const text = checkbox.nextElementSibling;
+            text.classList.toggle('completed');
+            saveTodos();
+        }
+
+        // Supprimer todo
+        function deleteTodo(todoId) {
+            const todoItem = document.querySelector(`[onclick="deleteTodo('${todoId}')"]`).parentElement;
+            todoItem.remove();
+            saveTodos();
+        }
+
+        // Sauvegarder localStorage
+        function saveTodos() {
+            const todos = Array.from(document.querySelectorAll('.todo-item')).map(item => {
+                const checkbox = item.querySelector('.todo-checkbox');
+                const text = item.querySelector('.todo-text').textContent;
+                return { text, completed: checkbox.checked };
+            });
+            localStorage.setItem('todos', JSON.stringify(todos));
+        }
+
+        // Charger todos
+        function loadTodos() {
+            const saved = JSON.parse(localStorage.getItem('todos') || '[]');
+            saved.forEach(todo => {
+                const todoId = 'saved-' + Date.now();
+                const todoItem = document.createElement('div');
+                todoItem.className = 'todo-item';
+                todoItem.innerHTML = `
+                    <input type="checkbox" class="todo-checkbox" ${todo.completed ? 'checked' : ''} onchange="toggleComplete('${todoId}')" id="${todoId}">
+                    <label for="${todoId}" class="todo-text ${todo.completed ? 'completed' : ''}">${todo.text}</label>
+                    <button class="delete-btn" onclick="deleteTodo('${todoId}')">🗑️ Supprimer</button>
+                `;
+                document.getElementById('todoList').appendChild(todoItem);
+            });
+        }
+
+        // Événements
+        document.getElementById('todoInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') addTodo();
+        });
+
+        // Initialisation
+        window.onload = loadTodos;
+    </script>
+</body>
+</html>
