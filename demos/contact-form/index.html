@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Formulaire avec validation</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="form-wrapper">
+    <h1 class="form-title">Formulaire de contact</h1>
+    <p class="form-subtitle">
+      Démo de validation côté client (HTML, CSS, JavaScript).
+    </p>
+
+    <form id="contactForm" novalidate>
+      <div class="form-group">
+        <label for="name">Nom complet<span class="required">*</span></label>
+        <input type="text" id="name" name="name" placeholder="Votre nom" />
+        <div class="error-message" id="nameError"></div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email<span class="required">*</span></label>
+        <input type="email" id="email" name="email" placeholder="vous@example.com" />
+        <div class="error-message" id="emailError"></div>
+      </div>
+
+      <div class="form-group">
+        <label for="subject">Sujet<span class="required">*</span></label>
+        <input type="text" id="subject" name="subject" placeholder="Sujet du message" />
+        <div class="error-message" id="subjectError"></div>
+      </div>
+
+      <div class="form-group">
+        <label for="message">Message<span class="required">*</span></label>
+        <textarea id="message" name="message" rows="4" placeholder="Votre message..."></textarea>
+        <div class="error-message" id="messageError"></div>
+      </div>
+
+      <button type="submit" class="btn-submit">Envoyer</button>
+      <p class="success-message" id="successMsg">
+        Merci ! Ce formulaire est une démo, les données ne sont pas envoyées.
+      </p>
+    </form>
+  </main>
+
+  <script>
+  const form = document.getElementById("contactForm");
+  const nameInput = document.getElementById("name");
+  const emailInput = document.getElementById("email");
+  const subjectInput = document.getElementById("subject");
+  const messageInput = document.getElementById("message");
+  const successMsg = document.getElementById("successMsg");
+
+  function showError(input, errorId, message) {
+    const errorEl = document.getElementById(errorId);
+
+    if (message) {
+      input.classList.add("error");
+      errorEl.textContent = message;
+    } else {
+      input.classList.remove("error");
+      errorEl.textContent = "";
+    }
+  }
+
+  function validateName() {
+    const value = nameInput.value.trim();
+    if (value.length < 3) {
+      showError(nameInput, "nameError", "Le nom doit contenir au moins 3 caractères.");
+      return false;
+    }
+    showError(nameInput, "nameError", "");
+    return true;
+  }
+
+  function validateEmail() {
+    const value = emailInput.value.trim();
+    const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!value) {
+      showError(emailInput, "emailError", "L’email est requis.");
+      return false;
+    }
+    if (!pattern.test(value)) {
+      showError(emailInput, "emailError", "Entrez une adresse email valide.");
+      return false;
+    }
+    showError(emailInput, "emailError", "");
+    return true;
+  }
+
+  function validateSubject() {
+    const value = subjectInput.value.trim();
+    if (value.length < 4) {
+      showError(subjectInput, "subjectError", "Le sujet doit contenir au moins 4 caractères.");
+      return false;
+    }
+    showError(subjectInput, "subjectError", "");
+    return true;
+  }
+
+  function validateMessage() {
+    const value = messageInput.value.trim();
+    if (value.length < 10) {
+      showError(messageInput, "messageError", "Le message doit contenir au moins 10 caractères.");
+      return false;
+    }
+    showError(messageInput, "messageError", "");
+    return true;
+  }
+
+  // Validation au blur (quand on quitte le champ)
+  nameInput.addEventListener("blur", validateName);
+  emailInput.addEventListener("blur", validateEmail);
+  subjectInput.addEventListener("blur", validateSubject);
+  messageInput.addEventListener("blur", validateMessage);
+
+  // Validation au submit
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const isNameValid = validateName();
+    const isEmailValid = validateEmail();
+    const isSubjectValid = validateSubject();
+    const isMessageValid = validateMessage();
+
+    if (isNameValid && isEmailValid && isSubjectValid && isMessageValid) {
+      successMsg.style.display = "block";
+      form.reset();
+    } else {
+      successMsg.style.display = "none";
+    }
+  });
+</script>
+
+</body>
+</html>
