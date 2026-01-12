@@ -8,8 +8,13 @@
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Monoton&display=swap">
   <link rel="stylesheet" href="style.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"/>
+  
+
   
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
 
   
   
@@ -17,7 +22,7 @@
 <body>
   <header class="site-header">
     <div class="container">
-      <a href="/portfolio-v3/index.html" class="brand">
+      <a href="https://webdikardev.github.io" class="brand">
         <span class="brand-text">
           <span class="brand-main">WebDikarDev</span>
         </span>
@@ -59,6 +64,9 @@
     <section id="projets">
   <h2>Mes projets</h2>
 
+      <h3 style="grid-column:1/-1; text-align:center; margin:3rem 0 1rem;">Projets FrontEnd HTML, CSS, JS (Démo Live)</h3>
+    
+
       <div class="projet-grid">
         <div class="projet-card">
           <img src="images/screenshots/Todo-List-Interactive-JS-CRUD.jpg" alt="Todo List Interactive">
@@ -95,6 +103,8 @@
             <a href="demos/product-cards/" class="btn-demo" target="_blank">Voir la démo</a>
         </div>
 
+        <h3 style="grid-column:1/-1; text-align:center; margin:3rem 0 1rem;">Projets BackEnd PHP/MYSQL (Démo Live)</h3>
+
         <div class="projet-card">
            <img src="images/screenshots/cabinet-dentaire-backend.jpg" alt="Gestion RDV cabinet dentaire">
            <h3>RDV Cabinet dentaire (backend)</h3>
@@ -122,6 +132,61 @@
           <p>Booking intelligent : anti-chevauchements, validation admin, planning visuel, CRUD sécurisé (PHP/MySQL/PDO/Bootstrap)</p>
           <a href="https://demos-portfolio.gt.tc/reservations-salles/public/index.php" class="btn-demo">Voir la démo backend</a>
         </div>
+
+        
+
+        <h3 style="grid-column:1/-1; text-align:center; margin:3rem 0 1rem;">PHP Frameworks (Captures)</h3>
+
+
+        <!-- Laravel Fleurs (3ème dernière) -->
+          <div class="projet-card">
+            <!-- Image principale (clic = ouvre galerie) -->
+              <a href="images/screenshots/laravel-boutique-fleurs-index.jpg" data-fancybox="laravel" data-caption="Index - Liste Fleurs">
+                <img src="images/screenshots/laravel-boutique-fleurs-index.jpg" alt="Fleurs Boutique (Laravel)" style="height:200px; width:100%; object-fit:cover; border-radius:8px;">
+              </a>
+              <!-- Images suivantes (défilement auto) -->
+               <a href="images/screenshots/laravel-boutique-fleurs-index.jpg" data-fancybox="laravel" data-caption="Index - Liste Fleurs" style="display:none;"></a>
+              <a href="images/screenshots/laravel-boutique-fleurs-panier-1.jpg" data-fancybox="laravel" data-caption="Ajouter une fleur au panier-1" style="display:none;"></a>
+              <a href="images/screenshots/laravel-boutique-fleurs-panier-2.jpg" data-fancybox="laravel" data-caption="Commande Panier-2" style="display:none;"></a>
+              <a href="images/screenshots/laravel-boutique-fleurs-admin.jpg" data-fancybox="laravel" data-caption="Portail Admin" style="display:none;"></a>
+
+            <h3>🌸 Fleurs Boutique (Laravel)</h3>
+            <p>CRUD e-commerce, panier, MySQL, Bootstrap.</p>
+          </div>
+
+          <!-- CakePHP (4ème dernière) -->
+          <div class="projet-card">
+              <!-- Image principale (clic = ouvre galerie) -->
+              <a href="images/screenshots/Project-manager-cake-1.jpg" data-fancybox="cakephp" data-caption="Index - Liste projets">
+                <img src="images/screenshots/Project-manager-cake-1.jpg" alt="CakePHP Project Manager" style="height:200px; width:100%; object-fit:cover; border-radius:8px;">
+              </a>
+              <!-- Images suivantes (défilement auto) -->
+               <a href="images/screenshots/Project-manager-cake-1.jpg" data-fancybox="cakephp" data-caption="Index - Liste projets" style="display:none;"></a>
+              <a href="images/screenshots/Project-manager-cake-2.jpg" data-fancybox="cakephp" data-caption="Créer Un Projet" style="display:none;"></a>
+              <a href="images/screenshots/Project-manager-cake-3.jpg" data-fancybox="cakephp" data-caption="Modifier Un Projet" style="display:none;"></a>
+              
+              <h3>📊 Project Manager (CakePHP 5)</h3>
+              <p>ORM relations, auth native, planning MySQL/PDO, Bootstrap responsive.</p>
+          </div>
+
+          <div class="projet-card">
+              <!-- Clic ici = ouvre galerie défilante -->
+              <a href="images/screenshots/Codeigniter-fleurs-index.jpg" data-fancybox="codeigniter" data-caption="Index boutique fleurs responsive">
+                <img src="images/screenshots/codeigniter-fleurs-index.jpg" alt="CodeIgniter Fleurs" style="height:200px; width:100%; object-fit:cover; border-radius:8px;">
+              </a>
+              <!-- Défile auto vers ces vues -->
+              <a href="images/screenshots/Codeigniter-fleurs-index.jpg" data-fancybox="codeigniter" data-caption="Index boutique fleurs responsive" style="display:none;"></a>
+              <a href="images/screenshots/Codeigniter-fleurs-Ajouter.jpg" data-fancybox="codeigniter" data-caption="Ajouter Un produit" style="display:none;"></a>
+              <a href="images/screenshots/Codeigniter-fleurs-Modifier.jpg" data-fancybox="codeigniter" data-caption="Modifier un produit" style="display:none;"></a>
+              <a href="images/screenshots/Codeigniter-fleurs-Supprimer.jpg" data-fancybox="codeigniter" data-caption="Supprimer un produit" style="display:none;"></a>
+
+
+              
+              <h3>🌺 Fleurs Boutique (CodeIgniter 4)</h3>
+              <p>CRUD produits stylé, validation, MySQL, Bootstrap/jQuery, routes flexibles.</p>
+          </div>
+
+
 
 
       </div>
@@ -195,6 +260,14 @@
     <p>&copy; 2025 WebDikarDev</p>
   </footer>
 
-  
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+<script>
+Fancybox.bind("[data-fancybox]", {
+  Slideshow: { autoStart: true, speed: 3000 },  // Défile auto 3s
+  Toolbar: { display: { right: ["slideshow", "thumbs", "close"] } },
+  Images: { zoom: true }
+});
+</script>
+
 </body>
 </html>
